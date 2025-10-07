@@ -1,0 +1,12 @@
+D:\Project\Coling-Backend\src\Coling.Domain\bin\Debug\net8.0\Coling.Domain.deps.json
+D:\Project\Coling-Backend\src\Coling.Domain\bin\Debug\net8.0\Coling.Domain.dll
+D:\Project\Coling-Backend\src\Coling.Domain\bin\Debug\net8.0\Coling.Domain.pdb
+D:\Project\Coling-Backend\src\Coling.Domain\obj\Debug\net8.0\Coling.Domain.csproj.AssemblyReference.cache
+D:\Project\Coling-Backend\src\Coling.Domain\obj\Debug\net8.0\Coling.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\Coling-Backend\src\Coling.Domain\obj\Debug\net8.0\Coling.Domain.AssemblyInfoInputs.cache
+D:\Project\Coling-Backend\src\Coling.Domain\obj\Debug\net8.0\Coling.Domain.AssemblyInfo.cs
+D:\Project\Coling-Backend\src\Coling.Domain\obj\Debug\net8.0\Coling.Domain.csproj.CoreCompileInputs.cache
+D:\Project\Coling-Backend\src\Coling.Domain\obj\Debug\net8.0\Coling.Domain.dll
+D:\Project\Coling-Backend\src\Coling.Domain\obj\Debug\net8.0\refint\Coling.Domain.dll
+D:\Project\Coling-Backend\src\Coling.Domain\obj\Debug\net8.0\Coling.Domain.pdb
+D:\Project\Coling-Backend\src\Coling.Domain\obj\Debug\net8.0\ref\Coling.Domain.dll

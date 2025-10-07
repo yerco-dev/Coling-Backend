@@ -1,0 +1,69 @@
+### Variables
+@baseUrl = http://localhost:7047
+@apiUrl = {{baseUrl}}/api
+
+### Login - Admin (usuario creado por el seeder)
+POST {{apiUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "userName": "admin",
+  "password": "Admin@123"
+}
+
+### Login - Moderador (usuario creado por el seeder)
+POST {{apiUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "userName": "moderator",
+  "password": "Moderator@123"
+}
+
+### Login - Usuario Miembro (después de registrarlo)
+POST {{apiUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "userName": "jperez",
+  "password": "SecureP@ss123"
+}
+
+### Login - Error: Usuario no existe
+POST {{apiUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "userName": "usuarioInexistente",
+  "password": "Password123!"
+}
+
+### Login - Error: Contraseña incorrecta
+POST {{apiUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "userName": "admin",
+  "password": "ContraseñaIncorrecta123!"
+}
+
+### Login - Error: Campos requeridos faltantes
+POST {{apiUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "userName": "admin"
+}
+
+### Login - Error: Body vacío
+POST {{apiUrl}}/auth/login
+Content-Type: application/json
+
+### Login - Error: JSON malformado
+POST {{apiUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "userName": "admin"
+  "password": "Admin@123"
+}

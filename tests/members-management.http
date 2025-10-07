@@ -1,0 +1,118 @@
+### Variables
+@baseUrl = http://localhost:7047
+@apiUrl = {{baseUrl}}/api
+@adminToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjZjM5Mjc1MS1mMzdiLTRhYTctNjcwZi0wOGRlMDRjMDY3NmYiLCJ1bmlxdWVfbmFtZSI6ImFkbWluIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiJjZjM5Mjc1MS1mMzdiLTRhYTctNjcwZi0wOGRlMDRjMDY3NmYiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW5pc3RyYWRvciIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQGNvbGluZy5jb20iLCJQZXJzb25JZCI6IjkwZjc4NTJiLTQ5NmItNDRiNi1hNDBhLTE1NjYxZTVjYWRlMiIsIkZ1bGxOYW1lIjoiQWRtaW5pc3RyYWRvciAgU2lzdGVtYSIsImp0aSI6ImE4OTQ2NzhlLTBjYWMtNDcyZS04NWQzLWNmZGFkNzBhNmI3MCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE3NTk4NjEyOTMsImlzcyI6IkNvbGluZ0FQSSIsImF1ZCI6IkNvbGluZ0NsaWVudCJ9.0ZNBb-6D25OgaVLsqVoO_9FMnA4UMxhlGi8txkZD84Q
+
+### 1. Login como Admin (obtener token primero)
+POST {{apiUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "userName": "admin",
+  "password": "Admin@123"
+}
+
+### 2. Obtener Miembros Pendientes
+GET {{apiUrl}}/members/pending
+Authorization: Bearer {{adminToken}}
+
+### 3. Aprobar Miembro (copiar UserId de la respuesta anterior)
+POST {{apiUrl}}/members/approve
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+  "userId": "GUID_DEL_USUARIO_AQUI"
+}
+
+### 4. Rechazar Miembro sin motivo
+POST {{apiUrl}}/members/reject
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+  "userId": "GUID_DEL_USUARIO_AQUI"
+}
+
+### 5. Rechazar Miembro con motivo
+POST {{apiUrl}}/members/reject
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+  "userId": "GUID_DEL_USUARIO_AQUI",
+  "reason": "Información proporcionada no coincide con registros oficiales"
+}
+
+### 6. Error - Aprobar miembro ya procesado
+POST {{apiUrl}}/members/approve
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+  "userId": "GUID_YA_APROBADO"
+}
+
+### 7. Error - UserId inválido
+POST {{apiUrl}}/members/approve
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+  "userId": "00000000-0000-0000-0000-000000000000"
+}
+
+### 8. Error - Body vacío
+POST {{apiUrl}}/members/approve
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+### 9. Error - Sin autorización (sin token)
+GET {{apiUrl}}/members/pending
+
+###############################################
+# Flujo completo de prueba
+###############################################
+
+### PASO 1: Registrar un nuevo miembro
+POST {{apiUrl}}/auth/register-member
+Content-Type: application/json
+
+{
+  "userName": "testmember1",
+  "email": "testmember1@example.com",
+  "password": "SecureP@ss123",
+  "nationalId": "12345678",
+  "firstNames": "Test",
+  "paternalLastName": "Member",
+  "maternalLastName": "One",
+  "membershipDate": "2024-01-15T00:00:00",
+  "membershipCode": "MEM-2024-TEST-001",
+  "titleNumber": "TIT-TEST-001"
+}
+
+### PASO 2: Login como Admin
+POST {{apiUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "userName": "admin",
+  "password": "Admin@123"
+}
+
+### PASO 3: Ver miembros pendientes (debe aparecer testmember1)
+GET {{apiUrl}}/members/pending
+Authorization: Bearer TOKEN_DEL_PASO_2
+
+### PASO 4: Copiar el userId de testmember1 y aprobarlo
+POST {{apiUrl}}/members/approve
+Content-Type: application/json
+Authorization: Bearer TOKEN_DEL_PASO_2
+
+{
+  "userId": "USERID_DE_TESTMEMBER1"
+}
+
+### PASO 5: Verificar que ya no aparece en pendientes
+GET {{apiUrl}}/members/pending
+Authorization: Bearer TOKEN_DEL_PASO_2

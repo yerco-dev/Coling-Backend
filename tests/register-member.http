@@ -1,0 +1,127 @@
+### Variables
+@baseUrl = http://localhost:7047
+@apiUrl = {{baseUrl}}/api
+
+### Registro de Miembro - Caso Exitoso
+POST {{apiUrl}}/auth/register-member
+Content-Type: application/json
+
+{
+  "userName": "jperez",
+  "email": "jperez@example.com",
+  "password": "SecureP@ss123",
+  "nationalId": "12345678",
+  "firstNames": "Juan Carlos",
+  "paternalLastName": "Pérez",
+  "maternalLastName": "García",
+  "membershipDate": "2024-01-15T00:00:00",
+  "membershipCode": "MEM-2024-001",
+  "titleNumber": "TIT-12345"
+}
+
+### Registro de Miembro - Sin apellido paterno (opcional)
+POST {{apiUrl}}/auth/register-member
+Content-Type: application/json
+
+{
+  "userName": "mlopez",
+  "email": "mlopez@example.com",
+  "password": "SecureP@ss456",
+  "nationalId": "87654321",
+  "firstNames": "María",
+  "maternalLastName": "López",
+  "membershipDate": "2024-02-20T00:00:00",
+  "membershipCode": "MEM-2024-002",
+  "titleNumber": "TIT-54321"
+}
+
+### Registro de Miembro - Error: Username duplicado
+POST {{apiUrl}}/auth/register-member
+Content-Type: application/json
+
+{
+  "userName": "jperez",
+  "email": "otro@example.com",
+  "password": "SecureP@ss789",
+  "nationalId": "11223344",
+  "firstNames": "Pedro",
+  "paternalLastName": "Ramírez",
+  "maternalLastName": "Torres",
+  "membershipDate": "2024-03-10T00:00:00",
+  "membershipCode": "MEM-2024-003",
+  "titleNumber": "TIT-99999"
+}
+
+### Registro de Miembro - Error: Contraseña inválida (sin mayúscula)
+POST {{apiUrl}}/auth/register-member
+Content-Type: application/json
+
+{
+  "userName": "aruiz",
+  "email": "aruiz@example.com",
+  "password": "weakpass123",
+  "nationalId": "55667788",
+  "firstNames": "Ana",
+  "paternalLastName": "Ruiz",
+  "maternalLastName": "Vega",
+  "membershipDate": "2024-04-05T00:00:00",
+  "membershipCode": "MEM-2024-004",
+  "titleNumber": "TIT-11111"
+}
+
+### Registro de Miembro - Error: Contraseña corta (menos de 8 caracteres)
+POST {{apiUrl}}/auth/register-member
+Content-Type: application/json
+
+{
+  "userName": "lmartinez",
+  "email": "lmartinez@example.com",
+  "password": "Pass1!",
+  "nationalId": "99887766",
+  "firstNames": "Luis",
+  "paternalLastName": "Martínez",
+  "maternalLastName": "Sánchez",
+  "membershipDate": "2024-05-12T00:00:00",
+  "membershipCode": "MEM-2024-005",
+  "titleNumber": "TIT-22222"
+}
+
+### Registro de Miembro - Error: Email inválido
+POST {{apiUrl}}/auth/register-member
+Content-Type: application/json
+
+{
+  "userName": "cflores",
+  "email": "emailinvalido",
+  "password": "SecureP@ss321",
+  "nationalId": "44556677",
+  "firstNames": "Carlos",
+  "paternalLastName": "Flores",
+  "maternalLastName": "Morales",
+  "membershipDate": "2024-06-18T00:00:00",
+  "membershipCode": "MEM-2024-006",
+  "titleNumber": "TIT-33333"
+}
+
+### Registro de Miembro - Error: Campos requeridos faltantes
+POST {{apiUrl}}/auth/register-member
+Content-Type: application/json
+
+{
+  "userName": "rgomez",
+  "email": "rgomez@example.com",
+  "password": "SecureP@ss654"
+}
+
+### Registro de Miembro - Error: Body vacío
+POST {{apiUrl}}/auth/register-member
+Content-Type: application/json
+
+### Registro de Miembro - Error: JSON malformado
+POST {{apiUrl}}/auth/register-member
+Content-Type: application/json
+
+{
+  "userName": "testuser"
+  "email": "test@example.com"
+}

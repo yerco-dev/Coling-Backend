@@ -1,0 +1,15 @@
+D:\Project\Coling-Backend\src\Coling.Application\bin\Debug\net8.0\Coling.Application.deps.json
+D:\Project\Coling-Backend\src\Coling.Application\bin\Debug\net8.0\Coling.Application.dll
+D:\Project\Coling-Backend\src\Coling.Application\bin\Debug\net8.0\Coling.Application.pdb
+D:\Project\Coling-Backend\src\Coling.Application\bin\Debug\net8.0\Coling.Domain.dll
+D:\Project\Coling-Backend\src\Coling.Application\bin\Debug\net8.0\Coling.Domain.pdb
+D:\Project\Coling-Backend\src\Coling.Application\obj\Debug\net8.0\Coling.Application.csproj.AssemblyReference.cache
+D:\Project\Coling-Backend\src\Coling.Application\obj\Debug\net8.0\Coling.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\Coling-Backend\src\Coling.Application\obj\Debug\net8.0\Coling.Application.AssemblyInfoInputs.cache
+D:\Project\Coling-Backend\src\Coling.Application\obj\Debug\net8.0\Coling.Application.AssemblyInfo.cs
+D:\Project\Coling-Backend\src\Coling.Application\obj\Debug\net8.0\Coling.Application.csproj.CoreCompileInputs.cache
+D:\Project\Coling-Backend\src\Coling.Application\obj\Debug\net8.0\Coling.A.CD007765.Up2Date
+D:\Project\Coling-Backend\src\Coling.Application\obj\Debug\net8.0\Coling.Application.dll
+D:\Project\Coling-Backend\src\Coling.Application\obj\Debug\net8.0\refint\Coling.Application.dll
+D:\Project\Coling-Backend\src\Coling.Application\obj\Debug\net8.0\Coling.Application.pdb
+D:\Project\Coling-Backend\src\Coling.Application\obj\Debug\net8.0\ref\Coling.Application.dll
