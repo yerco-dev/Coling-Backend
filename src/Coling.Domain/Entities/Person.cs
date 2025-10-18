@@ -1,10 +1,10 @@
-using Coling.Domain.Entities.Base;
+using Coling.Domain.Entities.PartyManagement;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Coling.Domain.Entities;
 
-public class Person : BaseEntity
+public class Person : Party
 {
     [Required]
     [StringLength(20)]
@@ -20,8 +20,11 @@ public class Person : BaseEntity
     [Required, MaxLength(100)]
     public string MaternalLastName { get; set; } = null!;
 
+    [DataType(DataType.Date)]
     public DateTime? BirthDate { get; set; }
 
+    [Url]
+    [MaxLength(500)]
     public string? PhotoUrl { get; set; }
 
     public Member? Member { get; set; }

@@ -1,10 +1,11 @@
 ﻿using Coling.Aplication.DTOs.UsersManagement;
 using Coling.Aplication.Interfaces.UnitsOfWork;
-using Coling.Domain.Entities.ActionResponse;
+using Coling.Domain.Wrappers;
 using Coling.Domain.Entities.UsersManagement;
 using Coling.Domain.Entities;
 using Coling.Domain.Interfaces.Repositories.UsersManagement;
 using Coling.Aplication.Validators;
+using Coling.Application.Validators;
 using Coling.Application.Mappers.ActionResponse;
 using Coling.Domain.Interfaces.Repositories.PeopleManagement;
 using Coling.Domain.Interfaces.Repositories.MembersManagement;
@@ -53,6 +54,18 @@ public class RegisterMemberUserUseCase
         if (!uniqueUserNameValidationResult.WasSuccessful)
             return uniqueUserNameValidationResult.ChangeNullActionResponseType<User, UserCreatedDto>();
 
+        var uniqueNationalIdValidationResult = await dto.NationalId.ValidateUniqueNationalId(_personRepository);
+        if (!uniqueNationalIdValidationResult.WasSuccessful)
+            return uniqueNationalIdValidationResult.ChangeNullActionResponseType<Person, UserCreatedDto>();
+
+        var uniqueMembershipCodeValidationResult = await dto.MembershipCode.ValidateUniqueMembershipCode(_memberRepository);
+        if (!uniqueMembershipCodeValidationResult.WasSuccessful)
+            return uniqueMembershipCodeValidationResult.ChangeNullActionResponseType<Member, UserCreatedDto>();
+
+        var uniqueTitleNumberValidationResult = await dto.TitleNumber.ValidateUniqueTitleNumber(_memberRepository);
+        if (!uniqueTitleNumberValidationResult.WasSuccessful)
+            return uniqueTitleNumberValidationResult.ChangeNullActionResponseType<Member, UserCreatedDto>();
+
         await _dbContextUnitOfWork.BeginTransactionAsync();
 
         try
@@ -88,7 +101,6 @@ public class RegisterMemberUserUseCase
 
             var role = BusinessConstants.SystemRolesValues[SystemRoles.Member];
 
-            // Asignar rol usando UserManager directamente (lógica de negocio en UseCase)
             var assignRoleResult = await _userManager.AddToRoleAsync(createUserResult.Result!, role);
 
             if (!assignRoleResult.Succeeded)

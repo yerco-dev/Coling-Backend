@@ -1,4 +1,4 @@
-﻿using Coling.Domain.Entities.ActionResponse;
+﻿using Coling.Domain.Wrappers;
 
 namespace Coling.Application.Mappers.ActionResponse;
 

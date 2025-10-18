@@ -1,6 +1,6 @@
 using Coling.Aplication.DTOs.UsersManagement;
 using Coling.Application.UseCases.UsersManagement;
-using Coling.Domain.Entities.ActionResponse;
+using Coling.Domain.Wrappers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;

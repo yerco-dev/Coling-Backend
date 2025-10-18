@@ -1,4 +1,4 @@
-﻿using Coling.Domain.Entities.ActionResponse;
+﻿using Coling.Domain.Wrappers;
 using Coling.Domain.Entities.UsersManagement;
 using Coling.Domain.Interfaces.Repositories.Generics;
 using Coling.Domain.Interfaces.Repositories.UsersManagement;
@@ -102,6 +102,7 @@ public class UserRepository : GenericRepository<User>, IUserRepository
         {
             var user = await _context.Users
                 .Include(u => u.Person)
+                    .ThenInclude(p => p.Member)
                 .FirstOrDefaultAsync(u => u.Id == id);
 
             if (user == null)

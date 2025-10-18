@@ -6,6 +6,7 @@ D:\Project\Coling-Backend\src\Coling.Domain\obj\Debug\net8.0\Coling.Domain.Gener
 D:\Project\Coling-Backend\src\Coling.Domain\obj\Debug\net8.0\Coling.Domain.AssemblyInfoInputs.cache
 D:\Project\Coling-Backend\src\Coling.Domain\obj\Debug\net8.0\Coling.Domain.AssemblyInfo.cs
 D:\Project\Coling-Backend\src\Coling.Domain\obj\Debug\net8.0\Coling.Domain.csproj.CoreCompileInputs.cache
+D:\Project\Coling-Backend\src\Coling.Domain\obj\Debug\net8.0\Coling.Domain.sourcelink.json
 D:\Project\Coling-Backend\src\Coling.Domain\obj\Debug\net8.0\Coling.Domain.dll
 D:\Project\Coling-Backend\src\Coling.Domain\obj\Debug\net8.0\refint\Coling.Domain.dll
 D:\Project\Coling-Backend\src\Coling.Domain\obj\Debug\net8.0\Coling.Domain.pdb

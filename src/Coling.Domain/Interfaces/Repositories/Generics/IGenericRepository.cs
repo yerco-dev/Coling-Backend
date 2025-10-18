@@ -1,4 +1,4 @@
-﻿using Coling.Domain.Entities.ActionResponse;
+﻿using Coling.Domain.Wrappers;
 using Coling.Domain.Interfaces.BaseEntities;
 using System.Linq.Expressions;
 

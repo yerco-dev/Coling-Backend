@@ -1,0 +1,360 @@
+@baseUrl = http://localhost:7071/api
+
+### Variables
+@categoryId = REPLACE_WITH_CATEGORY_ID
+@workFieldId = REPLACE_WITH_WORKFIELD_ID
+@workExperienceId = REPLACE_WITH_WORK_EXPERIENCE_ID
+@institutionId = REPLACE_WITH_INSTITUTION_ID
+@workFieldId1 = REPLACE_WITH_WORKFIELD_ID_1
+@workFieldId2 = REPLACE_WITH_WORKFIELD_ID_2
+@token = REPLACE_WITH_JWT_TOKEN
+
+#############################
+# WORK FIELD CATEGORY ENDPOINTS
+#############################
+
+### 1. Crear una nueva categoría de campo de trabajo
+POST {{baseUrl}}/work-field-category
+Content-Type: application/json
+
+{
+  "name": "Tecnología de la Información",
+  "description": "Categoría que engloba todos los campos relacionados con tecnología, desarrollo de software, infraestructura IT, etc."
+}
+
+### 2. Obtener todas las categorías de campos de trabajo (sin work fields)
+GET {{baseUrl}}/work-field-category
+
+### 3. Obtener todas las categorías con sus work fields asociados
+GET {{baseUrl}}/work-field-category/with-fields
+
+### 4. Obtener una categoría específica por ID (con work fields)
+GET {{baseUrl}}/work-field-category/{{categoryId}}
+
+### 5. Actualizar una categoría de campo de trabajo
+PUT {{baseUrl}}/work-field-category/{{categoryId}}
+Content-Type: application/json
+
+{
+  "id": "{{categoryId}}",
+  "name": "Tecnología de la Información y Comunicaciones",
+  "description": "Categoría actualizada que engloba TI y comunicaciones."
+}
+
+### 6. Eliminar una categoría de campo de trabajo (soft delete)
+DELETE {{baseUrl}}/work-field-category/{{categoryId}}
+
+#############################
+# WORK FIELD ENDPOINTS
+#############################
+
+### 7. Crear un nuevo campo de trabajo
+POST {{baseUrl}}/work-field
+Content-Type: application/json
+
+{
+  "name": "Desarrollo de Software",
+  "description": "Diseño, desarrollo y mantenimiento de aplicaciones y sistemas de software",
+  "workFieldCategoryId": "{{categoryId}}"
+}
+
+### 8. Obtener todos los campos de trabajo
+GET {{baseUrl}}/work-field
+
+### 9. Obtener un campo de trabajo específico por ID
+GET {{baseUrl}}/work-field/{{workFieldId}}
+
+### 10. Obtener todos los campos de trabajo de una categoría específica
+GET {{baseUrl}}/work-field/category/{{categoryId}}
+
+### 11. Actualizar un campo de trabajo
+PUT {{baseUrl}}/work-field/{{workFieldId}}
+Content-Type: application/json
+
+{
+  "id": "{{workFieldId}}",
+  "name": "Desarrollo Full Stack",
+  "description": "Desarrollo de software tanto frontend como backend",
+  "workFieldCategoryId": "{{categoryId}}"
+}
+
+### 12. Eliminar un campo de trabajo (soft delete)
+DELETE {{baseUrl}}/work-field/{{workFieldId}}
+
+#############################
+# EJEMPLOS COMPLETOS
+#############################
+
+### Crear múltiples categorías
+POST {{baseUrl}}/work-field-category
+Content-Type: application/json
+
+{
+  "name": "Ingeniería Civil",
+  "description": "Construcción, diseño estructural, gestión de proyectos de infraestructura"
+}
+
+###
+POST {{baseUrl}}/work-field-category
+Content-Type: application/json
+
+{
+  "name": "Ingeniería Eléctrica",
+  "description": "Sistemas eléctricos, automatización, energías renovables"
+}
+
+###
+POST {{baseUrl}}/work-field-category
+Content-Type: application/json
+
+{
+  "name": "Ingeniería Mecánica",
+  "description": "Diseño mecánico, manufactura, termodinámica"
+}
+
+### Crear múltiples work fields para TI
+POST {{baseUrl}}/work-field
+Content-Type: application/json
+
+{
+  "name": "Arquitectura de Software",
+  "description": "Diseño de arquitecturas escalables y mantenibles",
+  "workFieldCategoryId": "{{categoryId}}"
+}
+
+###
+POST {{baseUrl}}/work-field
+Content-Type: application/json
+
+{
+  "name": "DevOps",
+  "description": "Integración y despliegue continuo, automatización de infraestructura",
+  "workFieldCategoryId": "{{categoryId}}"
+}
+
+###
+POST {{baseUrl}}/work-field
+Content-Type: application/json
+
+{
+  "name": "Ciberseguridad",
+  "description": "Protección de sistemas, redes y datos contra ataques",
+  "workFieldCategoryId": "{{categoryId}}"
+}
+
+###
+POST {{baseUrl}}/work-field
+Content-Type: application/json
+
+{
+  "name": "Análisis de Datos",
+  "description": "Procesamiento, análisis y visualización de grandes volúmenes de datos",
+  "workFieldCategoryId": "{{categoryId}}"
+}
+
+###
+POST {{baseUrl}}/work-field
+Content-Type: application/json
+
+{
+  "name": "Inteligencia Artificial",
+  "description": "Machine Learning, Deep Learning, Computer Vision, NLP",
+  "workFieldCategoryId": "{{categoryId}}"
+}
+
+#############################
+# WORK EXPERIENCE ENDPOINTS
+# Nota: Estos endpoints requieren autenticación JWT (token en header)
+#############################
+
+### 13. Registrar una nueva experiencia laboral (con múltiples work fields)
+POST {{baseUrl}}/work-experience
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="institutionId"
+
+{{institutionId}}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="jobTitle"
+
+Ingeniero de Software Senior
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startYear"
+
+2020
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startMonth"
+
+3
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startDay"
+
+15
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="endYear"
+
+2023
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="endMonth"
+
+12
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="endDay"
+
+31
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+Desarrollo de sistemas empresariales utilizando arquitecturas modernas y prácticas ágiles
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="responsibilities"
+
+- Liderar equipo de desarrollo de 5 personas
+- Diseñar arquitecturas escalables en la nube
+- Implementar CI/CD pipelines
+- Realizar code reviews y mentoring
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="achievements"
+
+- Reducción del 40% en tiempo de despliegue
+- Implementación exitosa de microservicios
+- Mejora del 30% en performance de aplicaciones críticas
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="workFieldIds[0]"
+
+{{workFieldId1}}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="workFieldIds[1]"
+
+{{workFieldId2}}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="document"; filename="certificado-laboral.pdf"
+Content-Type: application/pdf
+
+< ./path/to/certificado-laboral.pdf
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### 14. Obtener todas mis experiencias laborales
+GET {{baseUrl}}/work-experience
+Authorization: Bearer {{token}}
+
+### 15. Obtener una experiencia laboral específica por ID
+GET {{baseUrl}}/work-experience/{{workExperienceId}}
+Authorization: Bearer {{token}}
+
+### 16. Actualizar una experiencia laboral existente
+# Nota: Solo se puede actualizar la propia experiencia laboral
+# Puede incluir un nuevo documento (reemplaza el anterior) o no incluir documento para mantener el existente
+PUT {{baseUrl}}/work-experience/{{workExperienceId}}
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="institutionId"
+
+{{institutionId}}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="jobTitle"
+
+Arquitecto de Software
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startYear"
+
+2020
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startMonth"
+
+3
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+Desarrollo y arquitectura de sistemas empresariales con enfoque en cloud y microservicios
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="responsibilities"
+
+- Diseñar arquitecturas de soluciones cloud-native
+- Liderar equipos de desarrollo
+- Implementar mejores prácticas de DevOps
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="achievements"
+
+- Migración exitosa a arquitectura de microservicios
+- Implementación de infraestructura como código
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="workFieldIds[0]"
+
+{{workFieldId1}}
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### 17. Eliminar una experiencia laboral (soft delete)
+# Nota: Solo se puede eliminar la propia experiencia laboral
+DELETE {{baseUrl}}/work-experience/{{workExperienceId}}
+Authorization: Bearer {{token}}
+
+#############################
+# EJEMPLOS ADICIONALES - WORK EXPERIENCE
+#############################
+
+### Registrar experiencia laboral actual (sin fecha de fin)
+POST {{baseUrl}}/work-experience
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="institutionId"
+
+{{institutionId}}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="jobTitle"
+
+Tech Lead
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startYear"
+
+2024
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startMonth"
+
+1
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+Actualmente liderando equipo de desarrollo de productos digitales
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="workFieldIds[0]"
+
+{{workFieldId1}}
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Registrar experiencia laboral sin documento adjunto
+POST {{baseUrl}}/work-experience
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="institutionId"
+
+{{institutionId}}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="jobTitle"
+
+Desarrollador Full Stack
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startYear"
+
+2018
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="endYear"
+
+2020
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+Desarrollo de aplicaciones web y móviles
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="workFieldIds[0]"
+
+{{workFieldId1}}
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

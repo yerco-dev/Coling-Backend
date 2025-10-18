@@ -1,0 +1,116 @@
+### Variables
+@baseUrl = http://localhost:7047/api
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhMjM0ZGNiMC02OTcyLTQwYmEtYjUwNi0wOGRlMDkxOWRlN2IiLCJ1bmlxdWVfbmFtZSI6Im1vZGVyYXRvciIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiYTIzNGRjYjAtNjk3Mi00MGJhLWI1MDYtMDhkZTA5MTlkZTdiIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6Ik1vZGVyYWRvciIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6Im1vZGVyYXRvckBjb2xpbmcuY29tIiwiUGVyc29uSWQiOiIyN2JmY2FkMC1hMzg3LTRiYzktYTAwMC02YjJjZjVjYzg3ZmIiLCJGdWxsTmFtZSI6Ik1vZGVyYWRvciAgU2lzdGVtYSIsImp0aSI6ImNhNDdkMjQxLWM4ZWEtNDcyYy04NjM3LWMxMzY3M2VkZjM4OCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6Ik1vZGVyYWRvciIsImV4cCI6MTc2MDMxMTA4OCwiaXNzIjoiQ29saW5nQVBJIiwiYXVkIjoiQ29saW5nQ2xpZW50In0.bO5pn8iPsa8_qcKrtK9itdcWWowF3W9TqJb7OB15vM8
+@institutionTypeId = 1791296d-b6c1-4dc8-a626-d5f6f766ca0b
+@institutionId = YOUR_INSTITUTION_ID_HERE
+
+
+### Login - Moderador (usuario creado por el seeder)
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "userName": "moderator",
+  "password": "Moderator@123"
+}
+
+### Login - Usuario Miembro (después de registrarlo)
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "userName": "jperez",
+  "password": "SecureP@ss123"
+}
+
+
+
+#########################################
+### TIPOS DE INSTITUCIÓN
+#########################################
+
+### Registrar Tipo de Institución - Universidad
+POST {{baseUrl}}/institution-types
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Universidad"
+}
+
+### Registrar Tipo de Institución - Empresa
+POST {{baseUrl}}/institution-type
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Empresa"
+}
+
+### Obtener Todos los Tipos de Institución
+GET {{baseUrl}}/institution-type
+Authorization: Bearer {{token}}
+
+### Obtener Tipo de Institución por ID
+GET {{baseUrl}}/institution-type/{{institutionTypeId}}
+Authorization: Bearer {{token}}
+
+### Actualizar Tipo de Institución
+PUT {{baseUrl}}/institution-type/{{institutionTypeId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Universidad Pública"
+}
+
+### Eliminar (Dar de Baja) Tipo de Institución
+DELETE {{baseUrl}}/institution-type/{{institutionTypeId}}
+Authorization: Bearer {{token}}
+
+#########################################
+### INSTITUCIONES
+#########################################
+
+### Registrar Institución - UPDS
+POST {{baseUrl}}/institution
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Universidad Privada Domingo Savio",
+  "institutionTypeId": "{{institutionTypeId}}"
+}
+
+### Registrar Institución - UCB
+POST {{baseUrl}}/institution
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Universidad Católica Boliviana",
+  "institutionTypeId": "{{institutionTypeId}}"
+}
+
+### Obtener Todas las Instituciones
+GET {{baseUrl}}/institution
+Authorization: Bearer {{token}}
+
+### Obtener Institución por ID
+GET {{baseUrl}}/institution/{{institutionId}}
+Authorization: Bearer {{token}}
+
+### Actualizar Institución
+PUT {{baseUrl}}/institution/{{institutionId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Universidad Privada Domingo Savio - UPDS",
+  "institutionTypeId": "{{institutionTypeId}}"
+}
+
+### Eliminar (Dar de Baja) Institución
+DELETE {{baseUrl}}/institution/{{institutionId}}
+Authorization: Bearer {{token}}
+

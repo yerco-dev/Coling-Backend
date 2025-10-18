@@ -1,5 +1,5 @@
 using Coling.Application.UseCases.MembersManagement;
-using Coling.Domain.Entities.ActionResponse;
+using Coling.Domain.Wrappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

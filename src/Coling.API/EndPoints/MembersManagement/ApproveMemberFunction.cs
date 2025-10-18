@@ -1,6 +1,6 @@
 using Coling.Aplication.DTOs.MembersManagement;
 using Coling.Application.UseCases.MembersManagement;
-using Coling.Domain.Entities.ActionResponse;
+using Coling.Domain.Wrappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +35,6 @@ public class ApproveMemberFunction
         {
             _logger.LogInformation("Procesando solicitud de aprobación de miembro.");
 
-            // Verificar autorización
             var user = context.GetHttpContext()?.User;
             if (user == null)
             {

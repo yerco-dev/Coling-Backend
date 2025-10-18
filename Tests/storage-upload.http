@@ -1,0 +1,92 @@
+@baseUrl = http://localhost:7047/api
+
+### 1. Upload Text File
+POST {{baseUrl}}/storage/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="documento-prueba.txt"
+Content-Type: text/plain
+
+Este es un archivo de texto de prueba para verificar el funcionamiento del blob storage con Azurite.
+El sistema debería generar un GUID único y retornar la URL del archivo.
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### 2. Upload JSON File
+POST {{baseUrl}}/storage/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="config.json"
+Content-Type: application/json
+
+{
+  "test": true,
+  "message": "Este es un archivo JSON de prueba",
+  "timestamp": "2025-10-10T10:00:00Z"
+}
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### 3. Upload Image (simulado como texto)
+POST {{baseUrl}}/storage/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="foto-perfil.jpg"
+Content-Type: image/jpeg
+
+[Simulación de datos binarios de imagen - en producción aquí iría el contenido real del archivo]
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### 4. Upload PDF (simulado como texto)
+POST {{baseUrl}}/storage/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="certificado.pdf"
+Content-Type: application/pdf
+
+[Simulación de datos binarios de PDF - en producción aquí iría el contenido real del archivo]
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### 5. Test Error - Sin archivo (debe retornar error 400)
+POST {{baseUrl}}/storage/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="otrocampo"
+
+valor sin archivo
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### 6. Upload CSV
+POST {{baseUrl}}/storage/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="miembros.csv"
+Content-Type: text/csv
+
+Nombre,Apellido,Email,Estado
+Juan,Pérez,juan.perez@example.com,Activo
+María,García,maria.garcia@example.com,Activo
+Pedro,López,pedro.lopez@example.com,Pendiente
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### 7. Upload XML
+POST {{baseUrl}}/storage/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="configuracion.xml"
+Content-Type: application/xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<configuracion>
+    <servidor>localhost</servidor>
+    <puerto>7071</puerto>
+    <activo>true</activo>
+</configuracion>
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###

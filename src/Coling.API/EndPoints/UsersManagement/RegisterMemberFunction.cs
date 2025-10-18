@@ -1,6 +1,6 @@
 using Coling.Aplication.DTOs.UsersManagement;
 using Coling.Application.UseCases.UsersManagement;
-using Coling.Domain.Entities.ActionResponse;
+using Coling.Domain.Wrappers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
@@ -30,7 +30,6 @@ public class RegisterMemberFunction
         {
             _logger.LogInformation("Procesando solicitud de registro de miembro.");
 
-            // Leer el body del request
             string requestBody;
             using (var reader = new StreamReader(req.Body))
             {
@@ -47,7 +46,6 @@ public class RegisterMemberFunction
                 });
             }
 
-            // Deserializar el DTO
             var dto = JsonSerializer.Deserialize<RegisterMemberUserDto>(requestBody, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true

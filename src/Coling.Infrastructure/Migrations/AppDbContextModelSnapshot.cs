@@ -22,6 +22,93 @@ namespace Coling.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Coling.Domain.Entities.AcademicManagement.Education", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<Guid>("InstitutionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InstitutionId");
+
+                    b.ToTable("Educations", (string)null);
+
+                    b.UseTptMappingStrategy();
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.AcademicManagement.MemberEducation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DocumentUrl")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<Guid>("EducationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("MemberId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("TitleReceived")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EducationId");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("MemberEducations");
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.InstitutionManagement.InstitutionType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("InstitutionTypes");
+                });
+
             modelBuilder.Entity("Coling.Domain.Entities.Member", b =>
                 {
                     b.Property<Guid>("Id")
@@ -60,49 +147,26 @@ namespace Coling.Infrastructure.Migrations
                     b.HasIndex("PersonId")
                         .IsUnique();
 
+                    b.HasIndex("TitleNumber")
+                        .IsUnique();
+
                     b.ToTable("Members");
                 });
 
-            modelBuilder.Entity("Coling.Domain.Entities.Person", b =>
+            modelBuilder.Entity("Coling.Domain.Entities.PartyManagement.Party", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("BirthDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FirstNames")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<string>("MaternalLastName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("NationalId")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("PaternalLastName")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("PhotoUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("NationalId")
-                        .IsUnique();
+                    b.ToTable("Parties", (string)null);
 
-                    b.ToTable("Persons");
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("Coling.Domain.Entities.UsersManagement.Role", b =>
@@ -216,6 +280,127 @@ namespace Coling.Infrastructure.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Coling.Domain.Entities.WorkManagement.WorkExperience", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Achievements")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<string>("DocumentUrl")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<Guid>("InstitutionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("JobTitle")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<Guid>("MemberId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Responsibilities")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InstitutionId");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("WorkExperiences");
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.WorkManagement.WorkExperienceField", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("WorkExperienceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("WorkFieldId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WorkFieldId");
+
+                    b.HasIndex("WorkExperienceId", "WorkFieldId")
+                        .IsUnique();
+
+                    b.ToTable("WorkExperienceFields");
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.WorkManagement.WorkField", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid>("WorkFieldCategoryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WorkFieldCategoryId");
+
+                    b.ToTable("WorkFields");
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.WorkManagement.WorkFieldCategory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WorkFieldCategories");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.Property<int>("Id")
@@ -319,6 +504,215 @@ namespace Coling.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Coling.Domain.Entities.AcademicManagement.ContinuingEducation", b =>
+                {
+                    b.HasBaseType("Coling.Domain.Entities.AcademicManagement.Education");
+
+                    b.Property<string>("CertificateNumber")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("DurationHours")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EducationType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IssuesCertificate")
+                        .HasColumnType("bit");
+
+                    b.ToTable("ContinuingEducations", (string)null);
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.AcademicManagement.DegreeEducation", b =>
+                {
+                    b.HasBaseType("Coling.Domain.Entities.AcademicManagement.Education");
+
+                    b.Property<string>("AcademicDegree")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<decimal?>("GPA")
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<bool>("HasHonors")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Major")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Specialization")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ThesisTitle")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.ToTable("DegreeEducations", (string)null);
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.AcademicManagement.ProfessionalCertification", b =>
+                {
+                    b.HasBaseType("Coling.Domain.Entities.AcademicManagement.Education");
+
+                    b.Property<string>("CertificationNumber")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("ExpirationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("RequiresRenewal")
+                        .HasColumnType("bit");
+
+                    b.ToTable("ProfessionalCertifications", (string)null);
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.InstitutionManagement.Institution", b =>
+                {
+                    b.HasBaseType("Coling.Domain.Entities.PartyManagement.Party");
+
+                    b.Property<Guid>("InstitutionTypeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasIndex("InstitutionTypeId");
+
+                    b.ToTable("Institutions", (string)null);
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.Person", b =>
+                {
+                    b.HasBaseType("Coling.Domain.Entities.PartyManagement.Party");
+
+                    b.Property<DateTime?>("BirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstNames")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("MaternalLastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("NationalId")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("PaternalLastName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PhotoUrl")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.HasIndex("NationalId")
+                        .IsUnique()
+                        .HasFilter("[NationalId] IS NOT NULL");
+
+                    b.ToTable("Persons", (string)null);
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.AcademicManagement.Education", b =>
+                {
+                    b.HasOne("Coling.Domain.Entities.InstitutionManagement.Institution", "Institution")
+                        .WithMany()
+                        .HasForeignKey("InstitutionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Institution");
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.AcademicManagement.MemberEducation", b =>
+                {
+                    b.HasOne("Coling.Domain.Entities.AcademicManagement.Education", "Education")
+                        .WithMany()
+                        .HasForeignKey("EducationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Coling.Domain.Entities.Member", "Member")
+                        .WithMany("Educations")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.OwnsOne("Coling.Domain.Entities.PartialDateManagement.PartialDate", "EndDate", b1 =>
+                        {
+                            b1.Property<Guid>("MemberEducationId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int?>("Day")
+                                .HasColumnType("int")
+                                .HasColumnName("DayCompleted");
+
+                            b1.Property<int?>("Month")
+                                .HasColumnType("int")
+                                .HasColumnName("MonthCompleted");
+
+                            b1.Property<int>("Year")
+                                .HasColumnType("int")
+                                .HasColumnName("YearCompleted");
+
+                            b1.HasKey("MemberEducationId");
+
+                            b1.ToTable("MemberEducations");
+
+                            b1.WithOwner()
+                                .HasForeignKey("MemberEducationId");
+                        });
+
+                    b.OwnsOne("Coling.Domain.Entities.PartialDateManagement.PartialDate", "StartDate", b1 =>
+                        {
+                            b1.Property<Guid>("MemberEducationId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int?>("Day")
+                                .HasColumnType("int")
+                                .HasColumnName("DayStarted");
+
+                            b1.Property<int?>("Month")
+                                .HasColumnType("int")
+                                .HasColumnName("MonthStarted");
+
+                            b1.Property<int>("Year")
+                                .HasColumnType("int")
+                                .HasColumnName("YearStarted");
+
+                            b1.HasKey("MemberEducationId");
+
+                            b1.ToTable("MemberEducations");
+
+                            b1.WithOwner()
+                                .HasForeignKey("MemberEducationId");
+                        });
+
+                    b.Navigation("Education");
+
+                    b.Navigation("EndDate");
+
+                    b.Navigation("Member");
+
+                    b.Navigation("StartDate");
+                });
+
             modelBuilder.Entity("Coling.Domain.Entities.Member", b =>
                 {
                     b.HasOne("Coling.Domain.Entities.Person", "Person")
@@ -339,6 +733,110 @@ namespace Coling.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Person");
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.WorkManagement.WorkExperience", b =>
+                {
+                    b.HasOne("Coling.Domain.Entities.InstitutionManagement.Institution", "Institution")
+                        .WithMany("WorkExperiences")
+                        .HasForeignKey("InstitutionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Coling.Domain.Entities.Member", "Member")
+                        .WithMany("WorkExperiences")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.OwnsOne("Coling.Domain.Entities.PartialDateManagement.PartialDate", "EndDate", b1 =>
+                        {
+                            b1.Property<Guid>("WorkExperienceId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int?>("Day")
+                                .HasColumnType("int")
+                                .HasColumnName("EndDay");
+
+                            b1.Property<int?>("Month")
+                                .HasColumnType("int")
+                                .HasColumnName("EndMonth");
+
+                            b1.Property<int>("Year")
+                                .HasColumnType("int")
+                                .HasColumnName("EndYear");
+
+                            b1.HasKey("WorkExperienceId");
+
+                            b1.ToTable("WorkExperiences");
+
+                            b1.WithOwner()
+                                .HasForeignKey("WorkExperienceId");
+                        });
+
+                    b.OwnsOne("Coling.Domain.Entities.PartialDateManagement.PartialDate", "StartDate", b1 =>
+                        {
+                            b1.Property<Guid>("WorkExperienceId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int?>("Day")
+                                .HasColumnType("int")
+                                .HasColumnName("StartDay");
+
+                            b1.Property<int?>("Month")
+                                .HasColumnType("int")
+                                .HasColumnName("StartMonth");
+
+                            b1.Property<int>("Year")
+                                .HasColumnType("int")
+                                .HasColumnName("StartYear");
+
+                            b1.HasKey("WorkExperienceId");
+
+                            b1.ToTable("WorkExperiences");
+
+                            b1.WithOwner()
+                                .HasForeignKey("WorkExperienceId");
+                        });
+
+                    b.Navigation("EndDate");
+
+                    b.Navigation("Institution");
+
+                    b.Navigation("Member");
+
+                    b.Navigation("StartDate")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.WorkManagement.WorkExperienceField", b =>
+                {
+                    b.HasOne("Coling.Domain.Entities.WorkManagement.WorkExperience", "WorkExperience")
+                        .WithMany("WorkExperienceFields")
+                        .HasForeignKey("WorkExperienceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Coling.Domain.Entities.WorkManagement.WorkField", "WorkField")
+                        .WithMany("WorkExperienceFields")
+                        .HasForeignKey("WorkFieldId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("WorkExperience");
+
+                    b.Navigation("WorkField");
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.WorkManagement.WorkField", b =>
+                {
+                    b.HasOne("Coling.Domain.Entities.WorkManagement.WorkFieldCategory", "WorkFieldCategory")
+                        .WithMany("WorkFields")
+                        .HasForeignKey("WorkFieldCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("WorkFieldCategory");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -390,6 +888,91 @@ namespace Coling.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.AcademicManagement.ContinuingEducation", b =>
+                {
+                    b.HasOne("Coling.Domain.Entities.AcademicManagement.Education", null)
+                        .WithOne()
+                        .HasForeignKey("Coling.Domain.Entities.AcademicManagement.ContinuingEducation", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.AcademicManagement.DegreeEducation", b =>
+                {
+                    b.HasOne("Coling.Domain.Entities.AcademicManagement.Education", null)
+                        .WithOne()
+                        .HasForeignKey("Coling.Domain.Entities.AcademicManagement.DegreeEducation", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.AcademicManagement.ProfessionalCertification", b =>
+                {
+                    b.HasOne("Coling.Domain.Entities.AcademicManagement.Education", null)
+                        .WithOne()
+                        .HasForeignKey("Coling.Domain.Entities.AcademicManagement.ProfessionalCertification", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.InstitutionManagement.Institution", b =>
+                {
+                    b.HasOne("Coling.Domain.Entities.PartyManagement.Party", null)
+                        .WithOne()
+                        .HasForeignKey("Coling.Domain.Entities.InstitutionManagement.Institution", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Coling.Domain.Entities.InstitutionManagement.InstitutionType", "InstitutionType")
+                        .WithMany("Institutions")
+                        .HasForeignKey("InstitutionTypeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("InstitutionType");
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.Person", b =>
+                {
+                    b.HasOne("Coling.Domain.Entities.PartyManagement.Party", null)
+                        .WithOne()
+                        .HasForeignKey("Coling.Domain.Entities.Person", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.InstitutionManagement.InstitutionType", b =>
+                {
+                    b.Navigation("Institutions");
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.Member", b =>
+                {
+                    b.Navigation("Educations");
+
+                    b.Navigation("WorkExperiences");
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.WorkManagement.WorkExperience", b =>
+                {
+                    b.Navigation("WorkExperienceFields");
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.WorkManagement.WorkField", b =>
+                {
+                    b.Navigation("WorkExperienceFields");
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.WorkManagement.WorkFieldCategory", b =>
+                {
+                    b.Navigation("WorkFields");
+                });
+
+            modelBuilder.Entity("Coling.Domain.Entities.InstitutionManagement.Institution", b =>
+                {
+                    b.Navigation("WorkExperiences");
                 });
 
             modelBuilder.Entity("Coling.Domain.Entities.Person", b =>

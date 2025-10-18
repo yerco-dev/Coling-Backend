@@ -3,7 +3,7 @@ using Coling.Aplication.Interfaces.UnitsOfWork;
 using Coling.Aplication.Validators;
 using Coling.Application.Mappers.ActionResponse;
 using Coling.Domain.Constants;
-using Coling.Domain.Entities.ActionResponse;
+using Coling.Domain.Wrappers;
 using Coling.Domain.Interfaces.Repositories.MembersManagement;
 using Coling.Domain.Interfaces.Repositories.UsersManagement;
 

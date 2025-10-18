@@ -11,6 +11,7 @@ D:\Project\Coling-Backend\src\Coling.Infrastructure\obj\Debug\net8.0\Coling.Infr
 D:\Project\Coling-Backend\src\Coling.Infrastructure\obj\Debug\net8.0\Coling.Infrastructure.AssemblyInfoInputs.cache
 D:\Project\Coling-Backend\src\Coling.Infrastructure\obj\Debug\net8.0\Coling.Infrastructure.AssemblyInfo.cs
 D:\Project\Coling-Backend\src\Coling.Infrastructure\obj\Debug\net8.0\Coling.Infrastructure.csproj.CoreCompileInputs.cache
+D:\Project\Coling-Backend\src\Coling.Infrastructure\obj\Debug\net8.0\Coling.Infrastructure.sourcelink.json
 D:\Project\Coling-Backend\src\Coling.Infrastructure\obj\Debug\net8.0\Coling.I.E692298D.Up2Date
 D:\Project\Coling-Backend\src\Coling.Infrastructure\obj\Debug\net8.0\Coling.Infrastructure.dll
 D:\Project\Coling-Backend\src\Coling.Infrastructure\obj\Debug\net8.0\refint\Coling.Infrastructure.dll

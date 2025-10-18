@@ -3,7 +3,7 @@ using Coling.Aplication.Interfaces.UnitsOfWork;
 using Coling.Aplication.Validators;
 using Coling.Application.Mappers.ActionResponse;
 using Coling.Domain.Constants;
-using Coling.Domain.Entities.ActionResponse;
+using Coling.Domain.Wrappers;
 using Coling.Domain.Interfaces.Repositories.MembersManagement;
 using Coling.Domain.Interfaces.Repositories.UsersManagement;
 
@@ -27,7 +27,6 @@ public class RejectMemberUseCase
 
     public async Task<ActionResponse<string>> ExecuteAsync(RejectMemberDto dto)
     {
-        // 1. Validar DTO
         var dtoValidationResult = dto.TryValidateModel();
         if (!dtoValidationResult.WasSuccessful)
             return dtoValidationResult.ChangeNullActionResponseType<RejectMemberDto, string>();
@@ -36,7 +35,6 @@ public class RejectMemberUseCase
 
         try
         {
-            // 2. Obtener usuario
             var userResult = await _userRepository.GetFullData(dto.UserId);
             if (!userResult.WasSuccessful)
             {
@@ -46,7 +44,6 @@ public class RejectMemberUseCase
 
             var user = userResult.Result!;
 
-            // 3. Obtener miembro asociado
             var memberResult = await _memberRepository.GetMemberByPersonIdAsync(user.PersonId);
             if (!memberResult.WasSuccessful)
             {
@@ -56,7 +53,6 @@ public class RejectMemberUseCase
 
             var member = memberResult.Result!;
 
-            // 4. Verificar que el miembro esté pendiente
             var pendingStatus = BusinessConstants.MemberStatusValues[MemberStatus.Pending];
             if (member.Status != pendingStatus)
             {
@@ -64,7 +60,6 @@ public class RejectMemberUseCase
                 return ActionResponse<string>.Conflict($"El miembro ya ha sido procesado. Estado actual: {member.Status}");
             }
 
-            // 5. Rechazar miembro (desactivar usuario y miembro)
             user.IsActive = false;
             member.IsActive = false;
 

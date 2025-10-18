@@ -1,4 +1,4 @@
-﻿using Coling.Domain.Entities.ActionResponse;
+﻿using Coling.Domain.Wrappers;
 using System.ComponentModel.DataAnnotations;
 
 namespace Coling.Aplication.Validators;

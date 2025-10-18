@@ -3,7 +3,8 @@ using Coling.Aplication.Validators;
 using Coling.Application.Interfaces.Services;
 using Coling.Application.Mappers.ActionResponse;
 using Coling.Application.Mappers.UsersManagement;
-using Coling.Domain.Entities.ActionResponse;
+using Coling.Domain.Constants;
+using Coling.Domain.Wrappers;
 using Coling.Domain.Interfaces.Repositories.UsersManagement;
 using Microsoft.AspNetCore.Identity;
 
@@ -52,6 +53,15 @@ public class LoginUseCase
 
         var roles = await _userManager.GetRolesAsync(user);
         var userRole = roles.FirstOrDefault() ?? "";
+
+        if (userRole == BusinessConstants.SystemRolesValues[SystemRoles.Member])
+        {
+            var member = user.Person?.Member;
+            if (member != null && member.Status == BusinessConstants.MemberStatusValues[MemberStatus.Pending])
+            {
+                return ActionResponse<LoginResponseDto>.Failure("Cuenta pendiente de aprovación.");
+            }
+        }
 
         var claims = new List<System.Security.Claims.Claim>
         {

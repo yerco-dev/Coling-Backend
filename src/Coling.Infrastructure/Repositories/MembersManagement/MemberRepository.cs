@@ -1,6 +1,6 @@
 ﻿using Coling.Domain.Constants;
 using Coling.Domain.Entities;
-using Coling.Domain.Entities.ActionResponse;
+using Coling.Domain.Wrappers;
 using Coling.Domain.Interfaces.Repositories.MembersManagement;
 using Coling.Infrastructure.Data;
 using Coling.Infrastructure.Repositories.Generics;

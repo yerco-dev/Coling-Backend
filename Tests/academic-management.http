@@ -1,0 +1,688 @@
+### Variables
+@baseUrl = http://localhost:7047/api
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMmI4YzY5ZS05Nzg2LTQ3YTQtNjAwNC0wOGRlMDkxOWZlNTciLCJ1bmlxdWVfbmFtZSI6ImpwZXJleiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiZTJiOGM2OWUtOTc4Ni00N2E0LTYwMDQtMDhkZTA5MTlmZTU3IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6Ikp1YW4gQ2FybG9zIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoianBlcmV6QGV4YW1wbGUuY29tIiwiUGVyc29uSWQiOiIwNzMxODk4Ny0yN2EyLTQ4YmMtYmE5OC1hMzgzNzgxNWYwNDUiLCJGdWxsTmFtZSI6Ikp1YW4gQ2FybG9zIFDDqXJleiBHYXJjw61hIiwianRpIjoiZjdjZmU3NzEtMTNkZi00MmMxLWJmZDgtNmIwY2EwNWRkZjRiIiwiTWVtYmVySWQiOiJlOTQ2ZjFkMC1iNjdiLTRkYjUtODgwZS1iMDU4MDRiNTgzOGEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJNaWVtYnJvIiwiZXhwIjoxNzYwMzEwODk5LCJpc3MiOiJDb2xpbmdBUEkiLCJhdWQiOiJDb2xpbmdDbGllbnQifQ.151OIefWeHa6g_NLpGOE8XbWhpWvFpTC6xst2oD85DU
+@institutionId = 2b1d44a7-bffc-4aa3-8a90-37e5365bad25
+@memberEducationId = GUID_DEL_MEMBER_EDUCATION
+
+### Login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "userName": "jperez",
+  "password": "SecureP@ss123"
+}
+
+
+### Obtener Todas las Instituciones
+GET {{baseUrl}}/institution
+Authorization: Bearer {{token}}
+
+
+### Listar Mis Grados Académicos
+GET {{baseUrl}}/academic/degree-education
+Authorization: Bearer {{token}}
+
+### Registrar Grado Académico (DegreeEducation) - CON ARCHIVO
+POST {{baseUrl}}/academic/degree-education
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer {{token}}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="institutionId"
+
+{{institutionId}}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+Ingeniería Civil
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+Programa de Ingeniería Civil con enfoque en estructuras
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="academicDegree"
+
+Licenciatura
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="major"
+
+Ingeniería Civil
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="specialization"
+
+Estructuras
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="thesisTitle"
+
+Análisis sísmico de edificios de concreto armado
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="gpa"
+
+85,5
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="hasHonors"
+
+true
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="titleReceived"
+
+Ingeniero Civil
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startYear"
+
+2015
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startMonth"
+
+3
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startDay"
+
+1
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="endYear"
+
+2020
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="endMonth"
+
+12
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="endDay"
+
+15
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="status"
+
+Completado
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="document"; filename="titulo-civil.pdf"
+Content-Type: application/pdf
+
+< ./test-files/titulo-civil.pdf
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Registrar Grado Académico - Maestría en Progreso (SIN ARCHIVO)
+POST {{baseUrl}}/academic/degree-education
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer {{token}}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="institutionId"
+
+GUID_DE_LA_INSTITUCION
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+Maestría en Gestión de Proyectos
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+Maestría enfocada en la gestión de proyectos de construcción
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="academicDegree"
+
+Maestría
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="major"
+
+Gestión de Proyectos
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="hasHonors"
+
+false
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="titleReceived"
+
+Magíster en Gestión de Proyectos
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startYear"
+
+2023
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startMonth"
+
+2
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="status"
+
+En progreso
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Registrar Grado Académico - Doctorado con fechas solo de año
+POST {{baseUrl}}/academic/degree-education
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer {{token}}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="institutionId"
+
+GUID_DE_LA_INSTITUCION
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+Doctorado en Ingeniería Estructural
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+Programa doctoral en análisis avanzado de estructuras
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="academicDegree"
+
+Doctorado
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="major"
+
+Ingeniería Estructural
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="specialization"
+
+Dinámica Estructural
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="thesisTitle"
+
+Comportamiento no lineal de estructuras bajo cargas sísmicas
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="gpa"
+
+95.0
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="hasHonors"
+
+true
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="titleReceived"
+
+Doctor en Ingeniería Estructural
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startYear"
+
+2018
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="endYear"
+
+2022
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="status"
+
+Completado
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="document"; filename="titulo-doctorado.pdf"
+Content-Type: application/pdf
+
+< ./test-files/titulo-doctorado.pdf
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Actualizar Grado Académico - CON NUEVO ARCHIVO
+PUT {{baseUrl}}/academic/degree-education/{{memberEducationId}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer {{token}}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="institutionId"
+
+2b0484f1-88b2-441b-b855-c295146b5488
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+Ingeniería Civil Actualizado
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+Descripción actualizada del programa
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="academicDegree"
+
+Licenciatura
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="major"
+
+Ingeniería Civil
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="specialization"
+
+Estructuras Avanzadas
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="thesisTitle"
+
+Análisis sísmico actualizado
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="gpa"
+
+90.0
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="hasHonors"
+
+true
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="titleReceived"
+
+Ingeniero Civil
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startYear"
+
+2015
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startMonth"
+
+3
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startDay"
+
+1
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="endYear"
+
+2020
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="endMonth"
+
+12
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="endDay"
+
+15
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="status"
+
+Completado
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="document"; filename="titulo-civil-actualizado.pdf"
+Content-Type: application/pdf
+
+< ./test-files/titulo-civil-actualizado.pdf
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Actualizar Grado Académico - SIN NUEVO ARCHIVO (mantiene el archivo existente)
+PUT {{baseUrl}}/academic/degree-education/{{memberEducationId}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer {{token}}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="institutionId"
+
+2b0484f1-88b2-441b-b855-c295146b5488
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+Ingeniería Civil - Solo Actualización de Datos
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+Actualización sin cambiar el archivo
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="academicDegree"
+
+Licenciatura
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="major"
+
+Ingeniería Civil
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="gpa"
+
+92.5
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="hasHonors"
+
+true
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="titleReceived"
+
+Ingeniero Civil
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startYear"
+
+2015
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="endYear"
+
+2020
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="status"
+
+Completado
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Eliminar Grado Académico (Soft Delete)
+DELETE {{baseUrl}}/academic/degree-education/{{memberEducationId}}
+Authorization: Bearer {{token}}
+
+###############################################################################
+### CONTINUING EDUCATION (Educación Continua)
+###############################################################################
+
+### Listar Mis Educaciones Continuas
+GET {{baseUrl}}/academic/continuing-education
+Authorization: Bearer {{token}}
+
+### Registrar Educación Continua - Curso con Certificado
+POST {{baseUrl}}/academic/continuing-education
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer {{token}}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="institutionId"
+
+GUID_DE_LA_INSTITUCION
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+Gestión de Proyectos con Metodologías Ágiles
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+Curso intensivo de gestión de proyectos utilizando Scrum y Kanban
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="durationHours"
+
+40
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="educationType"
+
+Curso
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="issuesCertificate"
+
+true
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="certificateNumber"
+
+CERT-2024-001234
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="titleReceived"
+
+Certificado en Gestión Ágil de Proyectos
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startYear"
+
+2024
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startMonth"
+
+1
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="endYear"
+
+2024
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="endMonth"
+
+2
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="status"
+
+Completado
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="document"; filename="certificado-agile.pdf"
+Content-Type: application/pdf
+
+< ./test-files/certificado-agile.pdf
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Registrar Educación Continua - Diplomado SIN ARCHIVO
+POST {{baseUrl}}/academic/continuing-education
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer {{token}}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="institutionId"
+
+GUID_DE_LA_INSTITUCION
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+Diplomado en BIM (Building Information Modeling)
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+Diplomado especializado en modelado de información para la construcción
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="durationHours"
+
+120
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="educationType"
+
+Diplomado
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="issuesCertificate"
+
+true
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="titleReceived"
+
+Diplomado en BIM
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startYear"
+
+2023
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="endYear"
+
+2024
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="status"
+
+Completado
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Actualizar Educación Continua - CON NUEVO ARCHIVO
+PUT {{baseUrl}}/academic/continuing-education/{{memberEducationId}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer {{token}}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="institutionId"
+
+GUID_DE_LA_INSTITUCION
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+Gestión de Proyectos con Metodologías Ágiles - Actualizado
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+Curso intensivo actualizado
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="durationHours"
+
+50
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="educationType"
+
+Curso
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="issuesCertificate"
+
+true
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="certificateNumber"
+
+CERT-2024-001234-V2
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="titleReceived"
+
+Certificado en Gestión Ágil de Proyectos
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startYear"
+
+2024
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="endYear"
+
+2024
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="status"
+
+Completado
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="document"; filename="certificado-agile-updated.pdf"
+Content-Type: application/pdf
+
+< ./test-files/certificado-agile-updated.pdf
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Eliminar Educación Continua (Soft Delete)
+DELETE {{baseUrl}}/academic/continuing-education/{{memberEducationId}}
+Authorization: Bearer {{token}}
+
+###############################################################################
+### PROFESSIONAL CERTIFICATION (Certificación Profesional)
+###############################################################################
+
+### Listar Mis Certificaciones Profesionales
+GET {{baseUrl}}/academic/professional-certification
+Authorization: Bearer {{token}}
+
+### Registrar Certificación Profesional - PMP con Renovación
+POST {{baseUrl}}/academic/professional-certification
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer {{token}}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="institutionId"
+
+GUID_DE_LA_INSTITUCION
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+Project Management Professional (PMP)
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+Certificación internacional en gestión de proyectos otorgada por PMI
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="certificationNumber"
+
+PMP-2024-123456
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="expirationDate"
+
+2027-12-31
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="requiresRenewal"
+
+true
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="titleReceived"
+
+Project Management Professional
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startYear"
+
+2024
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startMonth"
+
+6
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="endYear"
+
+2024
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="endMonth"
+
+8
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="status"
+
+Vigente
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="document"; filename="certificado-pmp.pdf"
+Content-Type: application/pdf
+
+< ./test-files/certificado-pmp.pdf
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Registrar Certificación Profesional - Sin Vencimiento SIN ARCHIVO
+POST {{baseUrl}}/academic/professional-certification
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer {{token}}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="institutionId"
+
+GUID_DE_LA_INSTITUCION
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+Ingeniero Civil Colegiado
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+Colegiatura oficial como Ingeniero Civil
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="certificationNumber"
+
+CIP-123456
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="requiresRenewal"
+
+false
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="titleReceived"
+
+Ingeniero Civil Colegiado
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startYear"
+
+2020
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="status"
+
+Vigente
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Actualizar Certificación Profesional - CON NUEVA FECHA DE VENCIMIENTO
+PUT {{baseUrl}}/academic/professional-certification/{{memberEducationId}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer {{token}}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="institutionId"
+
+GUID_DE_LA_INSTITUCION
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+Project Management Professional (PMP) - Renovado
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+Certificación renovada
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="certificationNumber"
+
+PMP-2024-123456-R1
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="expirationDate"
+
+2030-12-31
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="requiresRenewal"
+
+true
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="titleReceived"
+
+Project Management Professional
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="startYear"
+
+2024
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="status"
+
+Vigente
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="document"; filename="certificado-pmp-renovado.pdf"
+Content-Type: application/pdf
+
+< ./test-files/certificado-pmp-renovado.pdf
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Eliminar Certificación Profesional (Soft Delete)
+DELETE {{baseUrl}}/academic/professional-certification/{{memberEducationId}}
+Authorization: Bearer {{token}}

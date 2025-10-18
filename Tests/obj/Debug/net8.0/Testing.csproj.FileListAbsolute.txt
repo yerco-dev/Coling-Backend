@@ -1,0 +1,12 @@
+D:\Project\Coling-Backend\Tests\bin\Debug\net8.0\Testing.deps.json
+D:\Project\Coling-Backend\Tests\bin\Debug\net8.0\Testing.dll
+D:\Project\Coling-Backend\Tests\bin\Debug\net8.0\Testing.pdb
+D:\Project\Coling-Backend\Tests\obj\Debug\net8.0\Testing.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\Coling-Backend\Tests\obj\Debug\net8.0\Testing.AssemblyInfoInputs.cache
+D:\Project\Coling-Backend\Tests\obj\Debug\net8.0\Testing.AssemblyInfo.cs
+D:\Project\Coling-Backend\Tests\obj\Debug\net8.0\Testing.csproj.CoreCompileInputs.cache
+D:\Project\Coling-Backend\Tests\obj\Debug\net8.0\Testing.sourcelink.json
+D:\Project\Coling-Backend\Tests\obj\Debug\net8.0\Testing.dll
+D:\Project\Coling-Backend\Tests\obj\Debug\net8.0\refint\Testing.dll
+D:\Project\Coling-Backend\Tests\obj\Debug\net8.0\Testing.pdb
+D:\Project\Coling-Backend\Tests\obj\Debug\net8.0\ref\Testing.dll

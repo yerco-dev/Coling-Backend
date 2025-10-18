@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Coling.Domain.Entities.PartyManagement.Party" Collapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\PartyManagement\Party.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coling.Domain.Entities.InstitutionManagement.Institution" Collapsed="true">
+    <Position X="3.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAgAIAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\InstitutionManagement\Institution.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Coling.Domain.Entities.WorkManagement.WorkExperience">
+    <Position X="5.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAACAAAAAAgAAAEQAEAAQAgAAAIAgAgAAACAEAIAAA=</HashCode>
+      <FileName>Entities\WorkManagement\WorkExperience.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coling.Domain.Entities.Member">
+    <Position X="6" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAEIAIAAAAUAAAAACAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Entities\Member.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coling.Domain.Entities.PartialDateManagement.PartialDate">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQCAAACAJBAAAAQEgAAAAAAAAAAAAIAEAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\PartialDateManagement\PartialDate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Coling.Domain.Entities.WorkManagement.WorkField">
+    <Position X="2.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAEAAAgAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\WorkManagement\WorkField.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coling.Domain.Entities.AcademicManagement.AcademicDegree">
+    <Position X="12.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\AcademicManagement\AcademicDegree.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coling.Domain.Entities.AcademicManagement.ContinuingEducation">
+    <Position X="9.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAIAAAAAAAAAgQA=</HashCode>
+      <FileName>Entities\AcademicManagement\ContinuingEducation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coling.Domain.Entities.AcademicManagement.DegreeEducation">
+    <Position X="11.5" Y="6.5" Width="2.5" />
+    <InheritanceLine Type="Coling.Domain.Entities.AcademicManagement.Education" ManuallyRouted="true">
+      <Path>
+        <Point X="10.5" Y="5.867" />
+        <Point X="10.5" Y="6.242" />
+        <Point X="12.75" Y="6.242" />
+        <Point X="12.75" Y="6.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAIAABAAAAAAIAAAAAAAAAAAgAAAgAEA=</HashCode>
+      <FileName>Entities\AcademicManagement\DegreeEducation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coling.Domain.Entities.AcademicManagement.Education">
+    <Position X="9.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAgAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\AcademicManagement\Education.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coling.Domain.Entities.AcademicManagement.MemberEducation" Collapsed="true">
+    <Position X="14.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAABAAAAAAQAgAIAIAAAgAAAgAEAAAAQ=</HashCode>
+      <FileName>Entities\AcademicManagement\MemberEducation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coling.Domain.Entities.AcademicManagement.ProfessionalCertification">
+    <Position X="7.5" Y="6.5" Width="1.5" />
+    <InheritanceLine Type="Coling.Domain.Entities.AcademicManagement.Education" ManuallyRouted="true">
+      <Path>
+        <Point X="10.5" Y="5.867" />
+        <Point X="10.5" Y="6.279" />
+        <Point X="8.25" Y="6.279" />
+        <Point X="8.25" Y="6.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABBAAAAAAAAAQAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Entities\AcademicManagement\ProfessionalCertification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

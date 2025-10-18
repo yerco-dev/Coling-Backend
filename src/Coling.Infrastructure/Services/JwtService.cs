@@ -1,5 +1,5 @@
 ﻿using Coling.Application.Interfaces.Services;
-using Coling.Domain.Entities.ActionResponse;
+using Coling.Domain.Wrappers;
 using Coling.Domain.Entities.UsersManagement;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -38,6 +38,13 @@ public class JwtService : ITokenService
             new Claim("FullName", user.Person.FullName),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
+
+        // Agregar MemberId si el usuario es miembro
+        if (user.Person?.Member != null)
+        {
+            tokenClaims.Add(new Claim("MemberId", user.Person.Member.Id.ToString()));
+        }
+
         tokenClaims.AddRange(claims);
 
         var expiration = DateTime.UtcNow.AddHours(24);
